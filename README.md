@@ -65,6 +65,20 @@ node node_modules/vite/bin/vite.js
 Once the server is running, the dashboard can be accessed via a web browser at:
 `http://localhost:5173/`
 
+## Dataset Features
+
+The project utilizes a transaction dataset containing the following behavioral and transactional features used for anomaly detection:
+
+| Feature                            | Description                                                                                                                                 |
+| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Distance from Home**             | The distance from the calculated home location where the transaction occurred. Significant deviations often indicate fraud.                 |
+| **Distance from Last Transaction** | Ideally, the distance between the current and previous transaction. Large jumps in short times suggest impossible travel (velocity checks). |
+| **Ratio to Median Price**          | The transaction amount divided by the median price for that user/category. High ratios (>3x) are strong indicators of anomaly.              |
+| **Repeat Retailer**                | Boolean (1/0) indicating if the transaction was at a known retailer. New retailers may carry slightly higher risk.                          |
+| **Used Chip**                      | Boolean (1/0) indicating if the transaction used a chip (EMV). Secure.                                                                      |
+| **Used PIN Number**                | Boolean (1/0) indicating if a PIN was entered. Highly secure.                                                                               |
+| **Online Order**                   | Boolean (1/0) indicating if the transaction was online (CNP). Higher inherent fraud risk.                                                   |
+
 ## Project Structure
 
 - `Dataset.csv`: Source transaction data.
